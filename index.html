@@ -1,285 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>For Leen 💗</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8" />
+<title>For Leen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; overflow:hidden;
+  font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;
+  color:#c4004f;
+  background:linear-gradient(135deg,#ffd6e8,#ffeef5);
+  text-align:center;
+}
 
-  <style>
-    * { box-sizing: border-box; }
+.screen{min-height:100vh; display:none; align-items:center; justify-content:center; padding:16px;}
+.screen.active{display:flex;}
+.container{max-width:480px; width:100%; margin:auto}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
-      color: #c4004f;
-      background: linear-gradient(135deg, #ffd1e8, #ffe9f3);
-      overflow-x: hidden;
-      text-align: center;
-    }
+/* SMALL HEART (fixed size) */
+.heart{
+  width:90px; height:90px; background:red; margin:12px auto 8px;
+  position:relative; transform:rotate(-45deg); animation:beat 1.1s infinite;
+}
+.heart::before,.heart::after{
+  content:""; width:90px; height:90px; background:red; border-radius:50%; position:absolute;
+}
+.heart::before{top:-45px; left:0}
+.heart::after{left:45px; top:0}
+@keyframes beat{0%{transform:rotate(-45deg) scale(1)}50%{transform:rotate(-45deg) scale(1.06)}100%{transform:rotate(-45deg) scale(1)}}
 
-    .screen {
-      min-height: 100vh;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .screen.active {
-      display: flex;
-    }
+h1{margin:8px 0; font-size:32px}
+.subtitle{color:#ff4d88; margin-bottom:8px}
+.question{font-size:20px; margin:10px 0 18px}
 
-    .container {
-      max-width: 480px;
-      width: 100%;
-      margin: auto;
-    }
+.buttons{display:flex; gap:16px; justify-content:center}
+button{
+  border:none; padding:12px 26px; border-radius:999px; font-size:18px; cursor:pointer;
+}
+#yesBtn{
+  background:#ff4d88; color:#fff; box-shadow:0 0 16px rgba(255,77,136,.8);
+  transition:transform .15s;
+}
+#noBtn{background:#ddd; color:#333; position:relative}
 
-    h1 {
-      margin: 10px 0;
-      font-size: 34px;
-      text-shadow: 0 0 10px rgba(255, 0, 120, 0.4);
-    }
+/* Confetti */
+.conf{position:fixed; top:0; width:8px; height:8px; animation:conf 2.6s linear forwards}
+@keyframes conf{to{transform:translateY(110vh) rotate(720deg); opacity:0}}
 
-    .subtitle {
-      color: #ff4d88;
-      margin-bottom: 10px;
-      font-size: 18px;
-    }
+/* Page 2 */
+.p2 p{font-size:18px; line-height:1.5}
+.p2 .para{font-size:16px; color:#b3005a; margin-top:8px}
 
-    /* ❤️ FIXED SMALL HEART */
-    .big-heart {
-      width: 140px;   /* <<< SMALL FIXED SIZE */
-      height: 140px;  /* <<< SMALL FIXED SIZE */
-      margin: 20px auto;
-      background: red;
-      position: relative;
-      transform: rotate(-45deg);
-      animation: beat 1.2s infinite;
-    }
-    .big-heart::before,
-    .big-heart::after {
-      content: "";
-      width: 140px;
-      height: 140px;
-      background: red;
-      border-radius: 50%;
-      position: absolute;
-    }
-    .big-heart::before {
-      top: -70px;
-      left: 0;
-    }
-    .big-heart::after {
-      left: 70px;
-      top: 0;
-    }
-
-    @keyframes beat {
-      0% { transform: rotate(-45deg) scale(1); }
-      50% { transform: rotate(-45deg) scale(1.05); }
-      100% { transform: rotate(-45deg) scale(1); }
-    }
-
-    .question {
-      font-size: 20px;
-      margin: 15px 0 25px;
-    }
-
-    .btns {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    button {
-      border: none;
-      border-radius: 999px;
-      padding: 12px 28px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    .yes-btn {
-      background: #ff4d88;
-      color: white;
-      box-shadow: 0 0 15px rgba(255, 0, 120, 0.6);
-    }
-
-    .no-btn {
-      background: #ddd;
-      color: #333;
-    }
-
-    /* floating hearts */
-    .float-heart {
-      position: fixed;
-      top: -40px;
-      font-size: 22px;
-      animation: fall linear forwards;
-      pointer-events: none;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(110vh);
-        opacity: 0;
-      }
-    }
-
-    .continue-btn {
-      background: #eee;
-      color: #0077ff;
-      margin-top: 20px;
-      font-size: 18px;
-      padding: 10px 26px;
-    }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 12px;
-    }
-
-    .small-note {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #aa0066;
-      font-style: italic;
-    }
-  </style>
+/* Page 3 - NO SCROLL GRID */
+.p3{overflow:hidden}
+.gallery{
+  display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;
+}
+.gallery img{
+  width:100%; height: calc((100vh - 260px)/2); object-fit:cover; border-radius:12px;
+  box-shadow:0 0 14px rgba(255,77,136,.6);
+}
+.note{font-family:cursive; font-size:14px; color:#a0004d; margin-top:10px}
+.replay{margin-top:10px; background:#ff4d88; color:#fff}
+</style>
 </head>
 <body>
 
-  <!-- AUDIO -->
-  <audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3b3c2c2e0e.mp3?filename=romantic-ambient-11349.mp3" type="audio/mpeg">
-  </audio>
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_7c1b6f3b8a.mp3?filename=romantic-piano-121257.mp3" type="audio/mpeg">
+</audio>
+<audio id="yesSound">
+  <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_7c3c3fbe6f.mp3?filename=success-1-6297.mp3" type="audio/mpeg">
+</audio>
 
-  <audio id="noSound">
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1a1c6c7b42.mp3?filename=error-126627.mp3" type="audio/mpeg">
-  </audio>
-
-  <audio id="yesSound">
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4c3a2a6c1d.mp3?filename=success-fanfare-trumpets-6185.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- SCREEN 1 -->
-  <div class="screen active" id="screen1">
-    <div class="container">
-      <h1>Hi baby</h1>
-      <div class="subtitle">I have something to ask you</div>
-
-      <div class="big-heart" id="mainHeart"></div>
-
-      <div class="question">
-        You’re the cutest person alive. Will you be my Valentine, baby?
-      </div>
-
-      <div class="btns">
-        <button class="yes-btn" id="yesBtn">Yes</button>
-        <button class="no-btn" id="noBtn">No</button>
-      </div>
+<!-- PAGE 1 -->
+<div class="screen active" id="p1">
+  <div class="container">
+    <h1>Hi baby</h1>
+    <div class="subtitle">I have something to ask you</div>
+    <div class="heart"></div>
+    <div class="question">You’re the cutest person alive. Will you be my Valentine, baby?</div>
+    <div class="buttons">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
     </div>
   </div>
+</div>
 
-  <!-- SCREEN 2 -->
-  <div class="screen" id="screen2">
-    <div class="container">
-      <!-- ❌ EMOJI REMOVED FROM TITLE -->
-      <h1>Okay okay Leen</h1>
-
-      <p style="font-size:18px;">
-        You really can’t press no. You’re mine, I’m yours forever. This is really for you.
-      </p>
-
-      <!-- ✅ MISSING PARAGRAPH BACK -->
-      <p style="font-size:16px; color:#b3005a;">
-        I love you, Leen. I promise I will never stop loving you, and I’ll always take care of you.
-        You mean the world to me, my little cute princess.
-      </p>
-
-      <button class="continue-btn" id="continueBtn">Continue</button>
-    </div>
+<!-- PAGE 2 -->
+<div class="screen p2" id="p2">
+  <div class="container">
+    <h1>Okay okay Leen</h1>
+    <p>You really can’t press no. You’re mine, I’m yours forever. This is really for you.</p>
+    <p class="para" id="lovePara">
+      I love you Leen. I promise I will never stop loving you, and I’ll always take care of you.
+      You mean the world to me, my little cute princess.
+    </p>
+    <button id="toP3">Continue</button>
   </div>
+</div>
 
-  <!-- SCREEN 3 -->
-  <div class="screen" id="screen3">
-    <div class="container">
-      <h1>This is for you, Leen</h1>
-
-      <p>
-        Here are some cute moments for us. I love you, and I hope to build more moments together.
-      </p>
-
-      <div class="gallery">
-        <!-- USE YOUR FILE NAMES EXACTLY -->
-        <img src="IMG_8471.png" alt="">
-        <img src="IMG_8472.png" alt="">
-        <img src="IMG_8521.png" alt="">
-        <img src="IMG_8528.jpeg" alt="">
-      </div>
-
-      <div class="small-note">
-        ya allah adesh ta3abni foki 3ani
-      </div>
+<!-- PAGE 3 -->
+<div class="screen p3" id="p3">
+  <div class="container">
+    <h1>This is for you, Leen</h1>
+    <p>Here are some cute moments for us. I love you and I hope to build more moments together.</p>
+    <div class="gallery">
+      <img src="IMG_8471.png" alt="">
+      <img src="IMG_8472.png" alt="">
+      <img src="IMG_8521.png" alt="">
+      <img src="IMG_8528.jpeg" alt="">
     </div>
+    <div class="note">ya allah adesh ta3abni foki 3ani</div>
+    <button class="replay" id="replay">Replay</button>
   </div>
+</div>
 
-  <script>
-    const screen1 = document.getElementById("screen1");
-    const screen2 = document.getElementById("screen2");
-    const screen3 = document.getElementById("screen3");
+<script>
+const p1=document.getElementById('p1');
+const p2=document.getElementById('p2');
+const p3=document.getElementById('p3');
+const yesBtn=document.getElementById('yesBtn');
+const noBtn=document.getElementById('noBtn');
+const toP3=document.getElementById('toP3');
+const replay=document.getElementById('replay');
+const bgMusic=document.getElementById('bgMusic');
+const yesSound=document.getElementById('yesSound');
+const lovePara=document.getElementById('lovePara');
 
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const continueBtn = document.getElementById("continueBtn");
+let started=false;
+let scale=1;
 
-    const bgMusic = document.getElementById("bgMusic");
-    const noSound = document.getElementById("noSound");
-    const yesSound = document.getElementById("yesSound");
+// start music on first interaction (iPhone rule)
+document.body.addEventListener('click',()=>{
+  if(!started){
+    bgMusic.volume=0.5;
+    bgMusic.play().catch(()=>{});
+    started=true;
+  }
+},{once:true});
 
-    // start music on first interaction
-    document.body.addEventListener("click", () => {
-      bgMusic.play().catch(()=>{});
-    }, { once: true });
+// Speak helper
+function speak(text){
+  if('speechSynthesis' in window){
+    const u=new SpeechSynthesisUtterance(text);
+    u.rate=0.95; u.pitch=1; u.lang='en-US';
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+  }
+}
 
-    function spawnHeart() {
-      const h = document.createElement("div");
-      h.className = "float-heart";
-      h.innerText = "💗";
-      h.style.left = Math.random() * 100 + "vw";
-      h.style.animationDuration = (3 + Math.random() * 3) + "s";
-      document.body.appendChild(h);
-      setTimeout(() => h.remove(), 6000);
-    }
+// No: say "No", move button, grow Yes
+noBtn.addEventListener('click',()=>{
+  speak("No");
+  const x=(Math.random()*240)-120;
+  const y=(Math.random()*160)-80;
+  noBtn.style.transform=`translate(${x}px,${y}px)`;
+  scale+=0.18;
+  yesBtn.style.transform=`scale(${scale})`;
+});
 
-    setInterval(spawnHeart, 800);
+// Yes: celebration + confetti + go to page 2
+yesBtn.addEventListener('click',()=>{
+  yesSound.currentTime=0; yesSound.play().catch(()=>{});
+  for(let i=0;i<40;i++){
+    const c=document.createElement('div');
+    c.className='conf';
+    c.style.left=Math.random()*100+'vw';
+    c.style.background=['#ff4d88','#ff1a66','#ffcce0'][Math.floor(Math.random()*3)];
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),2600);
+  }
+  p1.classList.remove('active');
+  p2.classList.add('active');
+  // read ONLY the paragraph
+  speak(lovePara.innerText);
+});
 
-    noBtn.addEventListener("click", () => {
-      noSound.currentTime = 0;
-      noSound.play();
-    });
+// Continue to photos, fade music a bit
+toP3.addEventListener('click',()=>{
+  let v=bgMusic.volume;
+  const fade=setInterval(()=>{
+    v-=0.05;
+    if(v<=0.15){ clearInterval(fade); }
+    else{ bgMusic.volume=v; }
+  },200);
+  p2.classList.remove('active');
+  p3.classList.add('active');
+});
 
-    yesBtn.addEventListener("click", () => {
-      yesSound.currentTime = 0;
-      yesSound.play();
-
-      screen1.classList.remove("active");
-      screen2.classList.add("active");
-
-      // voice reading paragraph
-      const msg = new SpeechSynthesisUtterance(
-        "I love you, Leen. I promise I will never stop loving you, and I’ll always take care of you. You mean the world to me, my little cute princess."
-      );
-      msg.lang = "en-US";
-      speechSynthesis.speak(msg);
-    });
-
-    continueBtn.addEventListener("click", () => {
-      screen2.classList.remove("active");
-      screen3.classList.add("active");
-    });
-  </script>
+// Replay
+replay.addEventListener('click',()=>location.reload());
+</script>
 </body>
 </html>
