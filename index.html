@@ -5,277 +5,264 @@
 <title>For Leen 💗</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <style>
-  *{box-sizing:border-box}
-  body{
-    margin:0; min-height:100vh; overflow-x:hidden; text-align:center;
-    font-family: "Trebuchet MS","Segoe UI",Arial,sans-serif;
-    color:#c4004f; background:linear-gradient(135deg,#ffe6f0,#ffffff);
-  }
-  .screen{min-height:100vh; display:none; align-items:center; justify-content:center; padding:20px;}
-  .screen.active{display:flex}
-  .container{max-width:480px; margin:auto}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:"Trebuchet MS","Segoe UI",sans-serif;
+  background:linear-gradient(135deg,#ffe6f0,#ffd6e8);
+  color:#c4004f;
+  overflow-x:hidden;
+  text-align:center;
+}
+.screen{
+  min-height:100vh;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.screen.active{display:flex}
+.container{max-width:480px;margin:auto}
 
-  h1{margin:10px 0; font-size:32px}
-  .subtitle{color:#ff4d88; margin-bottom:10px}
-  .question{font-size:20px; margin:18px 0 26px; line-height:1.4}
+h1{font-size:34px;margin:10px 0}
+.subtitle{color:#ff4d88;margin-bottom:10px}
 
-  /* Smaller heart */
-  .heart{
-    width:48px; height:48px; background:#ff4d88; margin:14px auto;
-    transform:rotate(-45deg); position:relative; animation:beat 1s infinite;
-  }
-  .heart::before,.heart::after{
-    content:""; width:48px; height:48px; background:#ff4d88; border-radius:50%; position:absolute;
-  }
-  .heart::before{top:-24px; left:0}
-  .heart::after{left:24px; top:0}
-  @keyframes beat{0%{transform:rotate(-45deg) scale(1)}50%{transform:rotate(-45deg) scale(1.12)}100%{transform:rotate(-45deg) scale(1)}}
+.heart{
+  width:80px;height:80px; /* smaller heart */
+  margin:15px auto;
+  background:red;
+  position:relative;
+  transform:rotate(-45deg);
+  animation:beat 1s infinite;
+}
+.heart:before,.heart:after{
+  content:"";
+  width:80px;height:80px;
+  background:red;
+  border-radius:50%;
+  position:absolute;
+}
+.heart:before{top:-40px;left:0}
+.heart:after{left:40px;top:0}
 
-  .buttons{position:relative; height:120px}
-  button{
-    padding:12px 26px; font-size:18px; border:none; border-radius:12px; cursor:pointer; transition:all .25s ease;
-  }
-  #yesBtn{
-    background:#ff4d88; color:#fff; box-shadow:0 0 12px rgba(255,77,136,.8);
-    animation:glow 1.4s infinite;
-  }
-  @keyframes glow{0%{box-shadow:0 0 8px rgba(255,77,136,.6)}50%{box-shadow:0 0 18px rgba(255,77,136,1)}100%{box-shadow:0 0 8px rgba(255,77,136,.6)}}
-  #noBtn{background:#e0e0e0; color:#333; position:absolute; right:20px}
-  .shake{animation:shake .3s}
-  @keyframes shake{0%{transform:translateX(0)}25%{transform:translateX(-4px)}50%{transform:translateX(4px)}75%{transform:translateX(-4px)}100%{transform:translateX(0)}}
+@keyframes beat{
+  0%,100%{transform:scale(1) rotate(-45deg)}
+  50%{transform:scale(1.15) rotate(-45deg)}
+}
 
-  /* Confetti hearts */
-  .confetti{position:fixed; inset:0; pointer-events:none}
-  .c-heart{
-    position:absolute; width:16px; height:16px; background:#ff4d88; transform:rotate(-45deg); opacity:.9;
-    animation:fall 2.5s linear forwards;
-  }
-  .c-heart::before,.c-heart::after{content:""; width:16px; height:16px; background:#ff4d88; border-radius:50%; position:absolute}
-  .c-heart::before{top:-8px; left:0} .c-heart::after{left:8px; top:0}
-  @keyframes fall{from{transform:translateY(-20px) rotate(-45deg); opacity:1}to{transform:translateY(110vh) rotate(-45deg); opacity:0}}
+.buttons{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  margin-top:20px;
+}
+button{
+  padding:12px 22px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+}
+#yesBtn{background:#ff4d88;color:white}
+#noBtn{background:#ccc;color:#333;position:relative}
 
-  /* Page 2 text */
-  .message{font-size:20px; line-height:1.5; white-space:pre-line}
-  .cta{margin-top:20px; background:#ff4d88; color:#fff}
+.shake{animation:shake 0.3s}
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-5px)}
+  50%{transform:translateX(5px)}
+  75%{transform:translateX(-5px)}
+  100%{transform:translateX(0)}
+}
 
-  /* Page 3 decorations */
-  .bg-text{position:fixed; inset:0; pointer-events:none; opacity:.12; font-size:24px; display:flex; flex-wrap:wrap; align-content:flex-start}
-  .bg-text span{margin:10px 14px; color:#ff4d88}
+.glow{
+  text-shadow:0 0 8px #ff4d88,0 0 16px #ff4d88;
+}
 
-  .rain-heart{
-    position:fixed; width:14px; height:14px; background:#ffb3cc; transform:rotate(-45deg); opacity:.8; animation:rain 8s linear infinite;
-  }
-  .rain-heart::before,.rain-heart::after{content:""; width:14px; height:14px; background:#ffb3cc; border-radius:50%; position:absolute}
-  .rain-heart::before{top:-7px; left:0} .rain-heart::after{left:7px; top:0}
-  @keyframes rain{from{top:-20px}to{top:110vh}}
+.falling{
+  position:fixed;
+  top:-10px;
+  font-size:20px;
+  animation:fall 6s linear infinite;
+  opacity:0.8;
+}
+@keyframes fall{
+  to{transform:translateY(110vh)}
+}
 
-  .flowers{
-    display:grid; grid-template-columns:repeat(2,1fr); gap:12px; max-width:420px; margin:0 auto 18px;
-  }
-  .flowers img{width:100%; border-radius:14px; box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.photos{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:20px;
+}
+.photos img{
+  width:100%;
+  border-radius:12px;
+}
 
-  .hand{font-family:"Comic Sans MS","Segoe Script",cursive; font-size:14px; opacity:.8; margin-top:10px}
+.hand{
+  font-family:cursive;
+  font-size:14px;
+  margin-top:15px;
+  opacity:0.7;
+}
 
-  .final h1{margin-bottom:10px}
-  .replay{background:#ff4d88; color:#fff}
+.replay{
+  margin-top:20px;
+  background:#ff4d88;
+  color:white;
+}
+
+/* Heart explosion */
+.burst{
+  position:fixed;
+  font-size:24px;
+  animation:burst 1.5s ease-out forwards;
+}
+@keyframes burst{
+  from{transform:scale(1);opacity:1}
+  to{transform:translateY(-200px) scale(2);opacity:0}
+}
 </style>
 </head>
 <body>
 
-<!-- Screens -->
-<section id="s1" class="screen active">
+<!-- AUDIO -->
+<audio id="bgMusic" src="https://cdn.pixabay.com/audio/2022/03/15/audio_7c5c7a9d3c.mp3" loop></audio>
+<audio id="noSound" src="https://cdn.pixabay.com/audio/2022/03/10/audio_5e4a1b1b2a.mp3"></audio>
+<audio id="yesSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_3b0f1c6b28.mp3"></audio>
+
+<!-- PAGE 1 -->
+<div class="screen active" id="page1">
   <div class="container">
-    <h1>Hi baby</h1>
+    <h1 class="glow">Hi baby</h1>
     <div class="subtitle">I have something to ask you</div>
     <div class="heart"></div>
-    <div class="question">You’re the cutest person alive.<br/>Will you be my Valentine, baby?</div>
+    <p>You’re the cutest person alive. Will you be my Valentine, baby?</p>
     <div class="buttons">
-      <button id="yesBtn">Yes</button>
-      <button id="noBtn">No</button>
+      <button id="yesBtn">Yes 💖</button>
+      <button id="noBtn">No 🙄</button>
     </div>
   </div>
-</section>
+</div>
 
-<section id="s2" class="screen">
+<!-- PAGE 2 -->
+<div class="screen" id="page2">
   <div class="container">
-    <h1>💗</h1>
-    <div class="message" id="msg2">
-Okay okay… you really can’t say no.
-The only answer is yes.
-
-I’m yours and you’re mine, always.
-
-I love you, Leen.
-I promise I will never stop loving you, and I’ll always take care of you.
-You mean the world to me, my little cute princess.
-    </div>
-    <h2 style="margin-top:16px;">This is for you, Leen.</h2>
-    <button class="cta" id="toS3">I have something for you</button>
+    <h1 class="glow">I love you, Leen ❤️</h1>
+    <p id="loveText">
+      I promise I will never stop loving you, and I’ll always take care of you. You mean the world to me, my little cute princess.
+    </p>
   </div>
-</section>
+</div>
 
-<section id="s3" class="screen">
-  <div class="bg-text" id="bgText"></div>
-  <div id="rain"></div>
+<!-- PAGE 3 -->
+<div class="screen" id="page3">
   <div class="container">
-    <h1>💐</h1>
-    <div class="flowers">
-      <!-- Lily / flower images (no uploads needed) -->
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=800&auto=format&fit=crop" alt="">
-      <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=800&auto=format&fit=crop" alt="">
-      <img src="https://images.unsplash.com/photo-1501973801540-537f08ccae7b?q=80&w=800&auto=format&fit=crop" alt="">
-      <img src="https://images.unsplash.com/photo-1495231916356-a86217efff12?q=80&w=800&auto=format&fit=crop" alt="">
+    <h1 class="glow">For you 💗</h1>
+    <p>Here are some cute moments for us. I love you, and I hope to build more moments together.</p>
+
+    <div class="photos">
+      <img src="IMG_8471.png">
+      <img src="IMG_8472.png">
+      <img src="IMG_8521.png">
+      <img src="IMG_8528.jpeg">
     </div>
+
     <div class="hand">ya allah adesh ta3abni foki 3ani</div>
-    <button class="cta" id="toFinal">Continue</button>
+
+    <button class="replay" onclick="location.reload()">Replay 🔁</button>
   </div>
-</section>
-
-<section id="s4" class="screen final">
-  <div class="container">
-    <h1>I choose you. Always.</h1>
-    <h2>— Hashem</h2>
-    <button class="replay" id="replay">Watch it again</button>
-  </div>
-</section>
-
-<!-- Confetti container -->
-<div class="confetti" id="confetti"></div>
-
-<!-- Audio -->
-<audio id="noSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
-<audio id="yesSound" src="https://actions.google.com/sounds/v1/crowds/cheer.ogg" preload="auto"></audio>
-<audio id="bgMusic" src="https://cdn.pixabay.com/audio/2022/03/15/audio_7e2b6a2d2f.mp3" loop></audio>
+</div>
 
 <script>
-  const s1 = document.getElementById('s1');
-  const s2 = document.getElementById('s2');
-  const s3 = document.getElementById('s3');
-  const s4 = document.getElementById('s4');
+const page1=document.getElementById("page1");
+const page2=document.getElementById("page2");
+const page3=document.getElementById("page3");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
 
-  const yesBtn = document.getElementById('yesBtn');
-  const noBtn = document.getElementById('noBtn');
+const bgMusic=document.getElementById("bgMusic");
+const noSound=document.getElementById("noSound");
+const yesSound=document.getElementById("yesSound");
 
-  const noSound = document.getElementById('noSound');
-  const yesSound = document.getElementById('yesSound');
-  const bgMusic = document.getElementById('bgMusic');
+// start music on first interaction
+document.body.addEventListener("click",()=>{bgMusic.play()},{once:true});
 
-  let musicStarted = false;
-  let scale = 1;
+noBtn.addEventListener("click",()=>{
+  noSound.currentTime=0;
+  noSound.play();
+  noBtn.classList.add("shake");
+  setTimeout(()=>noBtn.classList.remove("shake"),300);
+  // move button
+  const x=Math.random()*200-100;
+  const y=Math.random()*200-100;
+  noBtn.style.transform=`translate(${x}px,${y}px)`;
+});
 
-  function startMusic(){
-    if(!musicStarted){
-      bgMusic.volume = 0.6;
-      bgMusic.play().catch(()=>{});
-      musicStarted = true;
-    }
+yesBtn.addEventListener("click",()=>{
+  yesSound.play();
+  explodeHearts();
+  setTimeout(()=>{
+    page1.classList.remove("active");
+    page2.classList.add("active");
+    readText();
+    // go to page 3 after 7s
+    setTimeout(()=>{
+      fadeOutMusic();
+      page2.classList.remove("active");
+      page3.classList.add("active");
+    },7000);
+  },1200);
+});
+
+function explodeHearts(){
+  for(let i=0;i<20;i++){
+    const h=document.createElement("div");
+    h.className="burst";
+    h.innerText="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.top="60vh";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1500);
   }
+}
 
-  // No button: sound + shake + run + grow Yes
-  noBtn.addEventListener('click', () => {
-    startMusic();
-    noSound.currentTime = 0; noSound.play().catch(()=>{});
-    noBtn.classList.add('shake');
-    setTimeout(()=>noBtn.classList.remove('shake'),300);
+// falling hearts
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="falling";
+  h.innerText="💗";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=4+Math.random()*4+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+},500);
 
-    const maxX = window.innerWidth - 120;
-    const maxY = 200;
-    noBtn.style.left = (Math.random()*maxX) + 'px';
-    noBtn.style.top  = (Math.random()*maxY) + 'px';
+// voice reading only paragraph
+function readText(){
+  const text=document.getElementById("loveText").innerText;
+  const utter=new SpeechSynthesisUtterance(text);
+  utter.lang="en-US";
+  speechSynthesis.speak(utter);
+}
 
-    scale += 0.2;
-    yesBtn.style.transform = `scale(${scale})`;
-  });
-
-  // Confetti hearts
-  function spawnConfetti(){
-    const box = document.getElementById('confetti');
-    for(let i=0;i<40;i++){
-      const h = document.createElement('div');
-      h.className = 'c-heart';
-      h.style.left = Math.random()*100 + 'vw';
-      h.style.animationDuration = (1.5 + Math.random()*1.5) + 's';
-      box.appendChild(h);
-      setTimeout(()=>h.remove(),3000);
+// fade out music
+function fadeOutMusic(){
+  let vol=bgMusic.volume;
+  const fade=setInterval(()=>{
+    vol-=0.05;
+    if(vol<=0){
+      bgMusic.pause();
+      clearInterval(fade);
+    }else{
+      bgMusic.volume=vol;
     }
-  }
-
-  // Text to Speech (read message)
-  function speakText(text){
-    if('speechSynthesis' in window){
-      const u = new SpeechSynthesisUtterance(text);
-      u.rate = 0.95; u.pitch = 1.05; u.lang = 'en-US';
-      speechSynthesis.cancel();
-      speechSynthesis.speak(u);
-    }
-  }
-
-  // Yes click
-  yesBtn.addEventListener('click', () => {
-    startMusic();
-    yesSound.currentTime = 0; yesSound.play().catch(()=>{});
-    spawnConfetti();
-
-    s1.classList.remove('active');
-    s2.classList.add('active');
-
-    // Fade music a bit for the message
-    const fade = setInterval(()=>{
-      if(bgMusic.volume > 0.25){ bgMusic.volume -= 0.05; }
-      else{ clearInterval(fade); }
-    },200);
-
-    const textToRead = document.getElementById('msg2').innerText + " This is for you, Leen.";
-    speakText(textToRead);
-  });
-
-  // Page 2 -> Page 3
-  document.getElementById('toS3').addEventListener('click', ()=>{
-    s2.classList.remove('active');
-    s3.classList.add('active');
-
-    buildBgText();
-    startRain();
-
-    // Bring music back a little
-    const up = setInterval(()=>{
-      if(bgMusic.volume < 0.6){ bgMusic.volume += 0.05; }
-      else{ clearInterval(up); }
-    },200);
-  });
-
-  // Background repeating text
-  function buildBgText(){
-    const bg = document.getElementById('bgText');
-    bg.innerHTML = '';
-    for(let i=0;i<80;i++){
-      const sp = document.createElement('span');
-      sp.textContent = 'I love you Leen';
-      bg.appendChild(sp);
-    }
-  }
-
-  // Rain hearts
-  function startRain(){
-    const r = document.getElementById('rain');
-    r.innerHTML = '';
-    for(let i=0;i<25;i++){
-      const h = document.createElement('div');
-      h.className = 'rain-heart';
-      h.style.left = Math.random()*100 + 'vw';
-      h.style.animationDelay = Math.random()*5 + 's';
-      r.appendChild(h);
-    }
-  }
-
-  // To final
-  document.getElementById('toFinal').addEventListener('click', ()=>{
-    s3.classList.remove('active');
-    s4.classList.add('active');
-  });
-
-  // Replay
-  document.getElementById('replay').addEventListener('click', ()=> location.reload());
+  },200);
+}
 </script>
+
 </body>
 </html>
