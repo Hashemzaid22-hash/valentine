@@ -1,271 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>For Leen</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <title>For Leen 💗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:"Trebuchet MS","Segoe UI",sans-serif;
-  background:linear-gradient(135deg,#ffd6e8,#ffeef5);
-  color:#c4004f;
-  overflow-x:hidden;
-  text-align:center;
-}
+  <style>
+    * { box-sizing: border-box; }
 
-.screen{
-  min-height:100vh;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-.screen.active{display:flex}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      color: #c4004f;
+      background: linear-gradient(135deg, #ffd1e8, #ffe9f3);
+      overflow-x: hidden;
+      text-align: center;
+    }
 
-.container{max-width:480px;margin:auto}
+    .screen {
+      min-height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .screen.active {
+      display: flex;
+    }
 
-h1{margin:10px 0;font-size:34px}
-.subtitle{color:#ff4d88;margin-bottom:10px}
+    .container {
+      max-width: 480px;
+      width: 100%;
+      margin: auto;
+    }
 
-.heart{
-  width:120px; /* SMALLER HEART */
-  height:110px;
-  margin:20px auto;
-  background:red;
-  position:relative;
-  transform:rotate(-45deg);
-  animation:beat 1s infinite;
-}
-.heart:before,.heart:after{
-  content:"";
-  width:120px;
-  height:110px;
-  background:red;
-  border-radius:50%;
-  position:absolute;
-}
-.heart:before{top:-60px;left:0}
-.heart:after{left:60px;top:0}
+    h1 {
+      margin: 10px 0;
+      font-size: 34px;
+      text-shadow: 0 0 10px rgba(255, 0, 120, 0.4);
+    }
 
-@keyframes beat{
-  0%,100%{transform:rotate(-45deg) scale(1)}
-  50%{transform:rotate(-45deg) scale(1.08)}
-}
+    .subtitle {
+      color: #ff4d88;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
 
-.question{font-size:20px;margin:20px 0}
+    /* ❤️ FIXED SMALL HEART */
+    .big-heart {
+      width: 140px;   /* <<< SMALL FIXED SIZE */
+      height: 140px;  /* <<< SMALL FIXED SIZE */
+      margin: 20px auto;
+      background: red;
+      position: relative;
+      transform: rotate(-45deg);
+      animation: beat 1.2s infinite;
+    }
+    .big-heart::before,
+    .big-heart::after {
+      content: "";
+      width: 140px;
+      height: 140px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .big-heart::before {
+      top: -70px;
+      left: 0;
+    }
+    .big-heart::after {
+      left: 70px;
+      top: 0;
+    }
 
-.buttons{
-  display:flex;
-  gap:15px;
-  justify-content:center;
-  margin-top:20px;
-}
+    @keyframes beat {
+      0% { transform: rotate(-45deg) scale(1); }
+      50% { transform: rotate(-45deg) scale(1.05); }
+      100% { transform: rotate(-45deg) scale(1); }
+    }
 
-button{
-  border:none;
-  padding:12px 22px;
-  border-radius:25px;
-  font-size:18px;
-  cursor:pointer;
-}
+    .question {
+      font-size: 20px;
+      margin: 15px 0 25px;
+    }
 
-#yesBtn{
-  background:#ff4d88;
-  color:white;
-  box-shadow:0 0 15px rgba(255,77,136,0.6);
-  transition:transform 0.2s;
-}
+    .btns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
 
-#noBtn{
-  background:#ddd;
-  color:#333;
-  position:relative;
-}
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 28px;
+      font-size: 18px;
+      cursor: pointer;
+    }
 
-/* hearts falling */
-.falling-heart{
-  position:fixed;
-  top:-20px;
-  font-size:20px;
-  animation:fall 6s linear forwards;
-  pointer-events:none;
-}
-@keyframes fall{
-  to{transform:translateY(120vh);opacity:0}
-}
+    .yes-btn {
+      background: #ff4d88;
+      color: white;
+      box-shadow: 0 0 15px rgba(255, 0, 120, 0.6);
+    }
 
-/* Gallery */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:20px;
-}
-.gallery img{
-  width:100%;
-  border-radius:12px;
-}
+    .no-btn {
+      background: #ddd;
+      color: #333;
+    }
 
-.small-note{
-  margin-top:20px;
-  font-family:cursive;
-  font-size:16px;
-  color:#aa0055;
-}
-</style>
+    /* floating hearts */
+    .float-heart {
+      position: fixed;
+      top: -40px;
+      font-size: 22px;
+      animation: fall linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    .continue-btn {
+      background: #eee;
+      color: #0077ff;
+      margin-top: 20px;
+      font-size: 18px;
+      padding: 10px 26px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .small-note {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aa0066;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7e2a9d2f38.mp3" type="audio/mpeg">
-</audio>
+  <!-- AUDIO -->
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3b3c2c2e0e.mp3?filename=romantic-ambient-11349.mp3" type="audio/mpeg">
+  </audio>
 
-<audio id="celebrateSound">
-  <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_8b1f5c6b7d.mp3" type="audio/mpeg">
-</audio>
+  <audio id="noSound">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1a1c6c7b42.mp3?filename=error-126627.mp3" type="audio/mpeg">
+  </audio>
 
-<div class="screen active" id="screen1">
-  <div class="container">
-    <h1>Hi baby</h1>
-    <div class="subtitle">I have something to ask you</div>
+  <audio id="yesSound">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4c3a2a6c1d.mp3?filename=success-fanfare-trumpets-6185.mp3" type="audio/mpeg">
+  </audio>
 
-    <div class="heart"></div>
+  <!-- SCREEN 1 -->
+  <div class="screen active" id="screen1">
+    <div class="container">
+      <h1>Hi baby</h1>
+      <div class="subtitle">I have something to ask you</div>
 
-    <div class="question">
-      You’re the cutest person alive. Will you be my Valentine, baby?
-    </div>
+      <div class="big-heart" id="mainHeart"></div>
 
-    <div class="buttons">
-      <button id="yesBtn">Yes</button>
-      <button id="noBtn">No</button>
+      <div class="question">
+        You’re the cutest person alive. Will you be my Valentine, baby?
+      </div>
+
+      <div class="btns">
+        <button class="yes-btn" id="yesBtn">Yes</button>
+        <button class="no-btn" id="noBtn">No</button>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="screen" id="screen2">
-  <div class="container">
-    <h1>Okay okay Leen 😅</h1>
-    <p id="storyText">
-      You really can’t press no. You’re mine, I’m yours forever. This is really for you.
-    </p>
-    <button id="continueBtn">Continue</button>
-  </div>
-</div>
+  <!-- SCREEN 2 -->
+  <div class="screen" id="screen2">
+    <div class="container">
+      <!-- ❌ EMOJI REMOVED FROM TITLE -->
+      <h1>Okay okay Leen</h1>
 
-<div class="screen" id="screen3">
-  <div class="container">
-    <h1>For You ❤️</h1>
-    <p>Here are some cute moments for us. I love you and I hope to build more moments together.</p>
+      <p style="font-size:18px;">
+        You really can’t press no. You’re mine, I’m yours forever. This is really for you.
+      </p>
 
-    <div class="gallery">
-      <img src="IMG_8471.png">
-      <img src="IMG_8472.png">
-      <img src="IMG_8521.png">
-      <img src="IMG_8528.jpeg">
+      <!-- ✅ MISSING PARAGRAPH BACK -->
+      <p style="font-size:16px; color:#b3005a;">
+        I love you, Leen. I promise I will never stop loving you, and I’ll always take care of you.
+        You mean the world to me, my little cute princess.
+      </p>
+
+      <button class="continue-btn" id="continueBtn">Continue</button>
     </div>
-
-    <div class="small-note">
-      ya allah adesh ta3abni foki 3ani
-    </div>
-
-    <button id="replayBtn" style="margin-top:20px;">Replay</button>
   </div>
-</div>
 
-<script>
-const screen1 = document.getElementById("screen1");
-const screen2 = document.getElementById("screen2");
-const screen3 = document.getElementById("screen3");
+  <!-- SCREEN 3 -->
+  <div class="screen" id="screen3">
+    <div class="container">
+      <h1>This is for you, Leen</h1>
 
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
-const continueBtn = document.getElementById("continueBtn");
-const replayBtn = document.getElementById("replayBtn");
+      <p>
+        Here are some cute moments for us. I love you, and I hope to build more moments together.
+      </p>
 
-const bgMusic = document.getElementById("bgMusic");
-const celebrateSound = document.getElementById("celebrateSound");
+      <div class="gallery">
+        <!-- USE YOUR FILE NAMES EXACTLY -->
+        <img src="IMG_8471.png" alt="">
+        <img src="IMG_8472.png" alt="">
+        <img src="IMG_8521.png" alt="">
+        <img src="IMG_8528.jpeg" alt="">
+      </div>
 
-let yesScale = 1;
+      <div class="small-note">
+        ya allah adesh ta3abni foki 3ani
+      </div>
+    </div>
+  </div>
 
-// start music on first interaction
-function startMusic(){
-  if(bgMusic.paused){
-    bgMusic.volume = 0.5;
-    bgMusic.play().catch(()=>{});
-  }
-}
+  <script>
+    const screen1 = document.getElementById("screen1");
+    const screen2 = document.getElementById("screen2");
+    const screen3 = document.getElementById("screen3");
 
-// speech
-function speak(text){
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = "en-US";
-  speechSynthesis.speak(u);
-}
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const continueBtn = document.getElementById("continueBtn");
 
-noBtn.addEventListener("click", () => {
-  startMusic();
+    const bgMusic = document.getElementById("bgMusic");
+    const noSound = document.getElementById("noSound");
+    const yesSound = document.getElementById("yesSound");
 
-  // say NO
-  speak("No");
+    // start music on first interaction
+    document.body.addEventListener("click", () => {
+      bgMusic.play().catch(()=>{});
+    }, { once: true });
 
-  // move no button
-  const x = Math.random()*200 - 100;
-  const y = Math.random()*200 - 100;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
-
-  // grow yes
-  yesScale += 0.15;
-  yesBtn.style.transform = `scale(${yesScale})`;
-});
-
-yesBtn.addEventListener("click", () => {
-  startMusic();
-  celebrateSound.play().catch(()=>{});
-
-  screen1.classList.remove("active");
-  screen2.classList.add("active");
-
-  // read paragraph
-  speak(document.getElementById("storyText").innerText);
-});
-
-continueBtn.addEventListener("click", () => {
-  // fade music
-  let v = bgMusic.volume;
-  const fade = setInterval(()=>{
-    v -= 0.05;
-    if(v <= 0){
-      bgMusic.pause();
-      clearInterval(fade);
-    } else {
-      bgMusic.volume = v;
+    function spawnHeart() {
+      const h = document.createElement("div");
+      h.className = "float-heart";
+      h.innerText = "💗";
+      h.style.left = Math.random() * 100 + "vw";
+      h.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 6000);
     }
-  },200);
 
-  screen2.classList.remove("active");
-  screen3.classList.add("active");
-});
+    setInterval(spawnHeart, 800);
 
-replayBtn.addEventListener("click", () => {
-  location.reload();
-});
+    noBtn.addEventListener("click", () => {
+      noSound.currentTime = 0;
+      noSound.play();
+    });
 
-// falling hearts
-setInterval(()=>{
-  const h = document.createElement("div");
-  h.className = "falling-heart";
-  h.innerText = "💗";
-  h.style.left = Math.random()*100 + "vw";
-  h.style.fontSize = (16 + Math.random()*20) + "px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-},500);
-</script>
+    yesBtn.addEventListener("click", () => {
+      yesSound.currentTime = 0;
+      yesSound.play();
 
+      screen1.classList.remove("active");
+      screen2.classList.add("active");
+
+      // voice reading paragraph
+      const msg = new SpeechSynthesisUtterance(
+        "I love you, Leen. I promise I will never stop loving you, and I’ll always take care of you. You mean the world to me, my little cute princess."
+      );
+      msg.lang = "en-US";
+      speechSynthesis.speak(msg);
+    });
+
+    continueBtn.addEventListener("click", () => {
+      screen2.classList.remove("active");
+      screen3.classList.add("active");
+    });
+  </script>
 </body>
 </html>
