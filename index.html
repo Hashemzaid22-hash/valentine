@@ -108,14 +108,13 @@
     }
 
     .message {
-      display: none;
       font-size: 20px;
       color: #b8004a;
       margin-top: 20px;
       line-height: 1.5;
     }
 
-    /* Floating hearts background */
+    /* Floating hearts */
     .floating-heart {
       position: absolute;
       width: 20px;
@@ -167,7 +166,8 @@
   <div class="floating-heart" style="left: 70%; animation-delay: 1s;"></div>
   <div class="floating-heart" style="left: 85%; animation-delay: 3s;"></div>
 
-  <div class="container">
+  <!-- First Screen -->
+  <div class="container" id="firstScreen">
     <h1>Hi baby</h1>
     <div class="subtitle">I have something to ask you</div>
 
@@ -178,12 +178,21 @@
       Will you be my Valentine, baby?
     </div>
 
-    <div class="buttons" id="buttonsArea">
+    <div class="buttons">
       <button id="yesBtn">Yes</button>
       <button id="noBtn">No</button>
     </div>
+  </div>
 
-    <div class="message" id="finalMessage">
+  <!-- Second Screen -->
+  <div class="container" id="secondScreen" style="display:none;">
+    <h1>💗</h1>
+    <div class="message">
+      Okay okay… you really can’t say no.  
+      The only answer is yes.  
+
+      I’m yours and you’re mine, always.  
+
       I love you, Leen.  
       I promise I will never stop loving you, and I’ll always take care of you.  
       You mean the world to me, my little cute princess. ❤️
@@ -193,8 +202,8 @@
   <script>
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
-    const message = document.getElementById("finalMessage");
-    const buttonsArea = document.getElementById("buttonsArea");
+    const firstScreen = document.getElementById("firstScreen");
+    const secondScreen = document.getElementById("secondScreen");
 
     let scale = 1;
 
@@ -208,8 +217,8 @@
     });
 
     yesBtn.addEventListener("click", () => {
-      buttonsArea.style.display = "none";
-      message.style.display = "block";
+      firstScreen.style.display = "none";
+      secondScreen.style.display = "block";
     });
   </script>
 
