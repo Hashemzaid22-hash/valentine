@@ -1,148 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>For Leen 💗</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>For Leen 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;
-  min-height:100vh;
+  margin:0; min-height:100vh; overflow-x:hidden;
   font-family:"Trebuchet MS","Segoe UI",sans-serif;
-  background:linear-gradient(135deg,#ffe6f0,#ffd6e8);
   color:#c4004f;
-  overflow-x:hidden;
+  background:linear-gradient(135deg,#ffd6e7,#ffeef5);
   text-align:center;
 }
-.screen{
-  min-height:100vh;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-.screen.active{display:flex}
-.container{max-width:480px;margin:auto}
 
-h1{font-size:34px;margin:10px 0}
-.subtitle{color:#ff4d88;margin-bottom:10px}
+.screen{min-height:100vh; display:none; align-items:center; justify-content:center; padding:20px;}
+.screen.active{display:flex;}
+
+.container{max-width:480px; margin:auto}
+
+h1{margin:10px 0; font-size:34px}
+.subtitle{color:#ff4d88; margin-bottom:10px}
 
 .heart{
-  width:80px;height:80px; /* smaller heart */
-  margin:15px auto;
-  background:red;
-  position:relative;
-  transform:rotate(-45deg);
+  width:120px; height:120px; background:red; margin:20px auto;
+  position:relative; transform:rotate(-45deg);
   animation:beat 1s infinite;
 }
 .heart:before,.heart:after{
-  content:"";
-  width:80px;height:80px;
-  background:red;
-  border-radius:50%;
-  position:absolute;
+  content:""; width:120px; height:120px; background:red;
+  border-radius:50%; position:absolute;
 }
-.heart:before{top:-40px;left:0}
-.heart:after{left:40px;top:0}
+.heart:before{top:-60px; left:0}
+.heart:after{left:60px; top:0}
 
 @keyframes beat{
-  0%,100%{transform:scale(1) rotate(-45deg)}
-  50%{transform:scale(1.15) rotate(-45deg)}
+  0%{transform:rotate(-45deg) scale(0.9)}
+  50%{transform:rotate(-45deg) scale(1)}
+  100%{transform:rotate(-45deg) scale(0.9)}
 }
 
-.buttons{
-  display:flex;
-  gap:20px;
-  justify-content:center;
-  margin-top:20px;
-}
+.buttons{display:flex; gap:20px; justify-content:center; margin-top:20px}
 button{
-  padding:12px 22px;
-  font-size:18px;
-  border:none;
-  border-radius:25px;
-  cursor:pointer;
+  border:none; padding:14px 26px; border-radius:25px;
+  font-size:18px; cursor:pointer;
 }
-#yesBtn{background:#ff4d88;color:white}
-#noBtn{background:#ccc;color:#333;position:relative}
-
-.shake{animation:shake 0.3s}
-@keyframes shake{
-  0%{transform:translateX(0)}
-  25%{transform:translateX(-5px)}
-  50%{transform:translateX(5px)}
-  75%{transform:translateX(-5px)}
-  100%{transform:translateX(0)}
+#yesBtn{
+  background:#ff4d88; color:white;
+  box-shadow:0 0 15px rgba(255,77,136,0.8);
+  transition:transform 0.2s;
 }
+#noBtn{background:#ddd}
 
 .glow{
-  text-shadow:0 0 8px #ff4d88,0 0 16px #ff4d88;
+  animation:glow 1.5s infinite alternate;
+}
+@keyframes glow{
+  from{box-shadow:0 0 10px #ff4d88}
+  to{box-shadow:0 0 25px #ff1a66}
 }
 
-.falling{
-  position:fixed;
-  top:-10px;
-  font-size:20px;
-  animation:fall 6s linear infinite;
-  opacity:0.8;
+/* falling hearts */
+.fall{
+  position:fixed; top:-20px; font-size:24px; animation:fall 6s linear infinite;
 }
 @keyframes fall{
-  to{transform:translateY(110vh)}
+  to{transform:translateY(110vh); opacity:0}
 }
 
-.photos{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:20px;
+/* page 2 */
+.messageBox{
+  font-size:20px; line-height:1.6; color:#c4004f;
+  animation:float 3s ease-in-out infinite;
 }
-.photos img{
-  width:100%;
-  border-radius:12px;
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
 }
 
-.hand{
+/* page 3 gallery */
+.gallery{
+  display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px;
+}
+.gallery img{
+  width:100%; border-radius:12px;
+  box-shadow:0 0 15px rgba(255,77,136,0.6);
+  animation:fadeIn 2s;
+}
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(0.9)}
+  to{opacity:1; transform:scale(1)}
+}
+
+.handwrite{
   font-family:cursive;
   font-size:14px;
-  margin-top:15px;
-  opacity:0.7;
-}
-
-.replay{
   margin-top:20px;
-  background:#ff4d88;
-  color:white;
+  color:#a0003d;
 }
 
-/* Heart explosion */
-.burst{
-  position:fixed;
-  font-size:24px;
-  animation:burst 1.5s ease-out forwards;
+.confetti{
+  position:fixed; top:0; width:10px; height:10px; background:red;
+  animation:confetti 3s linear forwards;
 }
-@keyframes burst{
-  from{transform:scale(1);opacity:1}
-  to{transform:translateY(-200px) scale(2);opacity:0}
+@keyframes confetti{
+  to{transform:translateY(110vh) rotate(720deg); opacity:0}
 }
 </style>
 </head>
 <body>
 
 <!-- AUDIO -->
-<audio id="bgMusic" src="https://cdn.pixabay.com/audio/2022/03/15/audio_7c5c7a9d3c.mp3" loop></audio>
-<audio id="noSound" src="https://cdn.pixabay.com/audio/2022/03/10/audio_5e4a1b1b2a.mp3"></audio>
-<audio id="yesSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_3b0f1c6b28.mp3"></audio>
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_7c1b6f3b8a.mp3?filename=romantic-piano-121257.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="noSound">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c3f6b0a7f.mp3?filename=no-113125.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="yesSound">
+  <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_7c3c3fbe6f.mp3?filename=success-1-6297.mp3" type="audio/mpeg">
+</audio>
 
 <!-- PAGE 1 -->
 <div class="screen active" id="page1">
   <div class="container">
-    <h1 class="glow">Hi baby</h1>
+    <h1>Hi baby</h1>
     <div class="subtitle">I have something to ask you</div>
+
     <div class="heart"></div>
+
     <p>You’re the cutest person alive. Will you be my Valentine, baby?</p>
+
     <div class="buttons">
-      <button id="yesBtn">Yes 💖</button>
+      <button id="yesBtn" class="glow">Yes 💖</button>
       <button id="noBtn">No 🙄</button>
     </div>
   </div>
@@ -151,117 +144,148 @@ button{
 <!-- PAGE 2 -->
 <div class="screen" id="page2">
   <div class="container">
-    <h1 class="glow">I love you, Leen ❤️</h1>
-    <p id="loveText">
-      I promise I will never stop loving you, and I’ll always take care of you. You mean the world to me, my little cute princess.
-    </p>
+    <div class="messageBox" id="msgFlow"></div>
+    <br>
+    <button id="okBtn">OK 💕</button>
   </div>
 </div>
 
 <!-- PAGE 3 -->
 <div class="screen" id="page3">
   <div class="container">
-    <h1 class="glow">For you 💗</h1>
-    <p>Here are some cute moments for us. I love you, and I hope to build more moments together.</p>
+    <h2>Here are some cute moments for us.</h2>
+    <p>I love you and I hope to build more moments together.</p>
 
-    <div class="photos">
+    <div class="gallery">
       <img src="IMG_8471.png">
       <img src="IMG_8472.png">
       <img src="IMG_8521.png">
       <img src="IMG_8528.jpeg">
     </div>
 
-    <div class="hand">ya allah adesh ta3abni foki 3ani</div>
+    <div class="handwrite">ya allah adesh ta3abni foki 3ani</div>
 
-    <button class="replay" onclick="location.reload()">Replay 🔁</button>
+    <br>
+    <button id="replayBtn">Replay 🔁</button>
   </div>
 </div>
 
 <script>
-const page1=document.getElementById("page1");
-const page2=document.getElementById("page2");
-const page3=document.getElementById("page3");
-const yesBtn=document.getElementById("yesBtn");
-const noBtn=document.getElementById("noBtn");
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+const page3 = document.getElementById("page3");
 
-const bgMusic=document.getElementById("bgMusic");
-const noSound=document.getElementById("noSound");
-const yesSound=document.getElementById("yesSound");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const okBtn = document.getElementById("okBtn");
+const replayBtn = document.getElementById("replayBtn");
+
+const bgMusic = document.getElementById("bgMusic");
+const noSound = document.getElementById("noSound");
+const yesSound = document.getElementById("yesSound");
+
+let scale = 1;
+let started = false;
 
 // start music on first interaction
-document.body.addEventListener("click",()=>{bgMusic.play()},{once:true});
-
-noBtn.addEventListener("click",()=>{
-  noSound.currentTime=0;
-  noSound.play();
-  noBtn.classList.add("shake");
-  setTimeout(()=>noBtn.classList.remove("shake"),300);
-  // move button
-  const x=Math.random()*200-100;
-  const y=Math.random()*200-100;
-  noBtn.style.transform=`translate(${x}px,${y}px)`;
-});
-
-yesBtn.addEventListener("click",()=>{
-  yesSound.play();
-  explodeHearts();
-  setTimeout(()=>{
-    page1.classList.remove("active");
-    page2.classList.add("active");
-    readText();
-    // go to page 3 after 7s
-    setTimeout(()=>{
-      fadeOutMusic();
-      page2.classList.remove("active");
-      page3.classList.add("active");
-    },7000);
-  },1200);
-});
-
-function explodeHearts(){
-  for(let i=0;i<20;i++){
-    const h=document.createElement("div");
-    h.className="burst";
-    h.innerText="💖";
-    h.style.left=Math.random()*100+"vw";
-    h.style.top="60vh";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),1500);
+document.body.addEventListener("click", ()=>{
+  if(!started){
+    bgMusic.volume = 0.5;
+    bgMusic.play().catch(()=>{});
+    started = true;
   }
+}, {once:true});
+
+// No button behavior
+noBtn.addEventListener("click", ()=>{
+  noSound.currentTime = 0;
+  noSound.play().catch(()=>{});
+
+  // move button
+  const x = Math.random()*200 - 100;
+  const y = Math.random()*200 - 100;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+  // grow yes
+  scale += 0.2;
+  yesBtn.style.transform = `scale(${scale})`;
+});
+
+// Yes button
+yesBtn.addEventListener("click", ()=>{
+  yesSound.currentTime = 0;
+  yesSound.play().catch(()=>{});
+
+  // confetti
+  for(let i=0;i<40;i++){
+    const c = document.createElement("div");
+    c.className="confetti";
+    c.style.left = Math.random()*100+"vw";
+    c.style.background = ["#ff4d88","#ff1a66","#ffcce0"][Math.floor(Math.random()*3)];
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+
+  page1.classList.remove("active");
+  page2.classList.add("active");
+
+  startMessageFlow();
+});
+
+// Page 2 text flow + voice
+const flow = [
+  "Okay okay Leen you really can’t press no.",
+  "You’re mine, I’m yours, forever.",
+  "This is really for you.",
+  "",
+  "I love you, Leen. I promise I will never stop loving you, and I will always take care of you. You mean the world to me, my little cute princess."
+];
+
+function speakParagraph(text){
+  const msg = new SpeechSynthesisUtterance(text);
+  msg.rate = 0.9;
+  msg.pitch = 1;
+  speechSynthesis.speak(msg);
 }
 
-// falling hearts
-setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="falling";
-  h.innerText="💗";
-  h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=4+Math.random()*4+"s";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),8000);
-},500);
+function startMessageFlow(){
+  const box = document.getElementById("msgFlow");
+  box.innerHTML = "";
+  let i = 0;
 
-// voice reading only paragraph
-function readText(){
-  const text=document.getElementById("loveText").innerText;
-  const utter=new SpeechSynthesisUtterance(text);
-  utter.lang="en-US";
-  speechSynthesis.speak(utter);
+  function nextLine(){
+    if(i < flow.length){
+      box.innerHTML += "<p>"+flow[i]+"</p>";
+      if(i === flow.length-1){
+        speakParagraph(flow[i]); // read only the love paragraph
+      }
+      i++;
+      setTimeout(nextLine, 1500);
+    }
+  }
+  nextLine();
 }
 
-// fade out music
-function fadeOutMusic(){
-  let vol=bgMusic.volume;
-  const fade=setInterval(()=>{
-    vol-=0.05;
-    if(vol<=0){
+// OK -> Page 3
+okBtn.addEventListener("click", ()=>{
+  // fade out music
+  const fade = setInterval(()=>{
+    if(bgMusic.volume > 0.05){
+      bgMusic.volume -= 0.05;
+    }else{
       bgMusic.pause();
       clearInterval(fade);
-    }else{
-      bgMusic.volume=vol;
     }
   },200);
-}
+
+  page2.classList.remove("active");
+  page3.classList.add("active");
+});
+
+// Replay
+replayBtn.addEventListener("click", ()=>{
+  location.reload();
+});
 </script>
 
 </body>
